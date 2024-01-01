@@ -11,17 +11,28 @@
 
 @implementation DateConverter
 
-+ (NSString *)getDateString:(NSString *)dateString {
-    NSDate *currentDate = [NSDate date];
++ (NSString *)convertDateString:(NSString *)inputDateString {
+    NSDateFormatter *inputDateFormatter = [[NSDateFormatter alloc] init];
+    [inputDateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSSSSS'Z'"];
+    NSDate *inputDate = [inputDateFormatter dateFromString:inputDateString];
     
-    NSDateFormatter *isoFormatter = [[NSDateFormatter alloc] init];
-    [isoFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSSSSS'Z'"];
-    [isoFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
+    NSDateFormatter *outputDateFormatter = [[NSDateFormatter alloc] init];
+    [outputDateFormatter setDateFormat:@"MMM d, HH:mm"];
+    NSString *outputDateString = [outputDateFormatter stringFromDate:inputDate];
     
-    NSDateFormatter *displayFormatter = [[NSDateFormatter alloc] init];
-    [displayFormatter setDateFormat:@"MMM d, h:mm a"];
-    NSString *displayDateString = [displayFormatter stringFromDate:currentDate];
-    return displayDateString;
+    return outputDateString;
+}
+
++ (NSString *)getShortDate:(NSString *)inputDateString {
+    NSDateFormatter *inputDateFormatter = [[NSDateFormatter alloc] init];
+    [inputDateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSSSSS'Z'"];
+    NSDate *inputDate = [inputDateFormatter dateFromString:inputDateString];
+    
+    NSDateFormatter *outputDateFormatter = [[NSDateFormatter alloc] init];
+    [outputDateFormatter setDateFormat:@"dd/MM/yyyy"];
+    NSString *outputDateString = [outputDateFormatter stringFromDate:inputDate];
+    
+    return outputDateString;
 }
 
 @end

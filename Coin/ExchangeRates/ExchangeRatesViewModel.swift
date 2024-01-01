@@ -10,6 +10,10 @@ import SwiftUI
 extension ExchangeRatesView {
     class ViewModel: ObservableObject {
         
+        // UserDefaults keys:
+        let udLastUpdateKey = "lastUpdate"
+        let udLastCurrency = "lastCurrency"
+        
         // Storing coinInfo in case we want to increment our info age
         @Published var coinInfo = [Rate]()
         
@@ -23,21 +27,51 @@ extension ExchangeRatesView {
         
         @Published var lastUpdate = ""
         
-        func getData() {
+        func getDataFromAPI() {
             APIManager.instance.getCoinData(currency: selectedCurrency) { coinInfo in
-                DispatchQueue.main.async {
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
                     withAnimation {
                         self.lastUpdate = "\(Date.now)"
                         self.coinInfo = coinInfo
                         self.filteredInfo = Array(coinInfo[..<self.infoAge])
+                        self.updateCurrentDate()
+                        
+                        // Saving the last update and selected currency to UserDefaults for our cache
+                        UserDefaults.standard.setValue(self.lastUpdate, forKey: self.udLastUpdateKey)
+                        UserDefaults.standard.setValue(self.selectedCurrency.rawValue, forKey: self.udLastCurrency)
                     }
-                    print("SUCCESS: \(coinInfo.count)")
                 }
+            }
+        }
+        
+        func getDataFromFileSystem() {
+            if let cachedRateInfo = APIManager.instance.getRateInfoFromFileSystem() {
+                coinInfo = cachedRateInfo
+                self.filteredInfo = Array(coinInfo[..<self.infoAge])
+            }
+            if let lastUpdate = UserDefaults.standard.value(forKey: udLastUpdateKey) as? String {
+                self.lastUpdate = lastUpdate
+            }
+            if let lastCurrency = UserDefaults.standard.value(forKey: udLastCurrency) as? String {
+                selectedCurrency = Currency(rawValue: lastCurrency) ?? .EUR
             }
         }
         
         func updateAge() {
             filteredInfo = Array(coinInfo[..<self.infoAge])
+        }
+        
+        func updateCurrentDate() {
+            let currentDate = Date()
+            let outputDateFormatter = DateFormatter()
+            outputDateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSS'Z'"
+            let dateString = outputDateFormatter.string(from: currentDate)
+            
+            let currentDateAsString = DateConverter.convertDateString(dateString)
+            if let currentDateAsString = currentDateAsString {
+                lastUpdate = currentDateAsString
+            }
         }
     }
 }

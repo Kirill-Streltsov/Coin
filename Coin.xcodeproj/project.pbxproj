@@ -8,17 +8,29 @@
 
 /* Begin PBXBuildFile section */
 		BD4C6BB52B42AA010041E115 /* CoinApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4C6BB42B42AA010041E115 /* CoinApp.swift */; };
-		BD4C6BB72B42AA010041E115 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4C6BB62B42AA010041E115 /* ContentView.swift */; };
 		BD4C6BB92B42AA020041E115 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD4C6BB82B42AA020041E115 /* Assets.xcassets */; };
 		BD4C6BBC2B42AA020041E115 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD4C6BBB2B42AA020041E115 /* Preview Assets.xcassets */; };
+		BD4C6BC32B42AA1A0041E115 /* ExchangeRatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4C6BC22B42AA1A0041E115 /* ExchangeRatesView.swift */; };
+		BD4C6BC52B42AA2F0041E115 /* ExchangeRatesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4C6BC42B42AA2F0041E115 /* ExchangeRatesViewModel.swift */; };
+		BD4C6BC72B42AA440041E115 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4C6BC62B42AA440041E115 /* APIManager.swift */; };
+		BD4C6BC92B42AA580041E115 /* Rate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4C6BC82B42AA580041E115 /* Rate.swift */; };
+		BD4C6BCB2B42AA680041E115 /* Currencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4C6BCA2B42AA680041E115 /* Currencies.swift */; };
+		BD4C6BD12B42AADB0041E115 /* DateConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = BD4C6BD02B42AADB0041E115 /* DateConverter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		BD4C6BB12B42AA010041E115 /* Coin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Coin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD4C6BB42B42AA010041E115 /* CoinApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinApp.swift; sourceTree = "<group>"; };
-		BD4C6BB62B42AA010041E115 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BD4C6BB82B42AA020041E115 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BD4C6BBB2B42AA020041E115 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		BD4C6BC22B42AA1A0041E115 /* ExchangeRatesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRatesView.swift; sourceTree = "<group>"; };
+		BD4C6BC42B42AA2F0041E115 /* ExchangeRatesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRatesViewModel.swift; sourceTree = "<group>"; };
+		BD4C6BC62B42AA440041E115 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		BD4C6BC82B42AA580041E115 /* Rate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rate.swift; sourceTree = "<group>"; };
+		BD4C6BCA2B42AA680041E115 /* Currencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currencies.swift; sourceTree = "<group>"; };
+		BD4C6BCF2B42AADB0041E115 /* Coin-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Coin-Bridging-Header.h"; sourceTree = "<group>"; };
+		BD4C6BD02B42AADB0041E115 /* DateConverter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DateConverter.m; sourceTree = "<group>"; };
+		BD4C6BD22B42AB100041E115 /* DateConverter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DateConverter.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,7 +64,10 @@
 			isa = PBXGroup;
 			children = (
 				BD4C6BB42B42AA010041E115 /* CoinApp.swift */,
-				BD4C6BB62B42AA010041E115 /* ContentView.swift */,
+				BD4C6BCC2B42AA7F0041E115 /* ExchangeRates */,
+				BD4C6BCD2B42AA870041E115 /* API */,
+				BD4C6BCE2B42AA8C0041E115 /* Model */,
+				BD4C6BD32B42B5AB0041E115 /* DateConverter */,
 				BD4C6BB82B42AA020041E115 /* Assets.xcassets */,
 				BD4C6BBA2B42AA020041E115 /* Preview Content */,
 			);
@@ -65,6 +80,42 @@
 				BD4C6BBB2B42AA020041E115 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		BD4C6BCC2B42AA7F0041E115 /* ExchangeRates */ = {
+			isa = PBXGroup;
+			children = (
+				BD4C6BC22B42AA1A0041E115 /* ExchangeRatesView.swift */,
+				BD4C6BC42B42AA2F0041E115 /* ExchangeRatesViewModel.swift */,
+			);
+			path = ExchangeRates;
+			sourceTree = "<group>";
+		};
+		BD4C6BCD2B42AA870041E115 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				BD4C6BC62B42AA440041E115 /* APIManager.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		BD4C6BCE2B42AA8C0041E115 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BD4C6BC82B42AA580041E115 /* Rate.swift */,
+				BD4C6BCA2B42AA680041E115 /* Currencies.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BD4C6BD32B42B5AB0041E115 /* DateConverter */ = {
+			isa = PBXGroup;
+			children = (
+				BD4C6BD02B42AADB0041E115 /* DateConverter.m */,
+				BD4C6BD22B42AB100041E115 /* DateConverter.h */,
+				BD4C6BCF2B42AADB0041E115 /* Coin-Bridging-Header.h */,
+			);
+			path = DateConverter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -99,6 +150,7 @@
 				TargetAttributes = {
 					BD4C6BB02B42AA010041E115 = {
 						CreatedOnToolsVersion = 15.1;
+						LastSwiftMigration = 1510;
 					};
 				};
 			};
@@ -137,7 +189,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BD4C6BB72B42AA010041E115 /* ContentView.swift in Sources */,
+				BD4C6BCB2B42AA680041E115 /* Currencies.swift in Sources */,
+				BD4C6BC52B42AA2F0041E115 /* ExchangeRatesViewModel.swift in Sources */,
+				BD4C6BC72B42AA440041E115 /* APIManager.swift in Sources */,
+				BD4C6BD12B42AADB0041E115 /* DateConverter.m in Sources */,
+				BD4C6BC92B42AA580041E115 /* Rate.swift in Sources */,
+				BD4C6BC32B42AA1A0041E115 /* ExchangeRatesView.swift in Sources */,
 				BD4C6BB52B42AA010041E115 /* CoinApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -197,7 +254,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -254,7 +311,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -269,6 +326,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Coin/Preview Content\"";
@@ -288,6 +346,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.krlsrlsv.Coin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Coin/DateConverter/Coin-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -298,6 +358,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Coin/Preview Content\"";
@@ -317,6 +378,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.krlsrlsv.Coin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Coin/DateConverter/Coin-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

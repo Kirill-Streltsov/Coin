@@ -11,63 +11,79 @@ struct ExchangeRatesView: View {
     
     @StateObject private var vm = ViewModel()
     
-    
     var body: some View {
         NavigationStack {
-            VStack {
-                Text("Last Update: \(vm.lastUpdate)")
-                HStack {
-                    Text("Currency: ")
-                    Picker("Currencies", selection: $vm.selectedCurrency) {
-                        ForEach(Currency.allCases) { currency in
-                            Text(currency.rawValue).tag(currency)
-                        }
-                    }
-                    Spacer()
-                }
-                .padding(.horizontal)
-                
-                HStack {
-                    Stepper("Number of days: \(vm.infoAge)", value: $vm.infoAge, in: 1...30, onEditingChanged: { changed in
-                        vm.updateAge()
-                    })
-                    Spacer()
-                }
-                .padding(.horizontal)
-                
-                List(vm.filteredInfo) { item in
+            List {
+                headerView
+                ForEach(vm.filteredInfo) { item in
                     VStack {
                         HStack {
-                            Text("Rate Close:")
+                            Text("Rate Open: ")
                             Spacer()
-                            Text("\(item.rateClose, specifier: "%.2f")")
+                            Text("\(item.rateOpen, specifier: "%.2f")")
                                 .fontWeight(.semibold)
                             
                         }
                         HStack {
                             Text("Date: ")
                             Spacer()
-                            Text("9 June, 2001")
+                            Text(DateConverter.getShortDate(item.timeOpen))
                             
                         }
                         .fontWeight(.light)
-                        
-                        
                     }
-                    
                 }
-                .listStyle(.plain)
+                
+                
             }
+            .listStyle(.plain)
             .navigationTitle("Coin")
             .toolbar {
                 ToolbarItem {
-                    Button("Get data", action: vm.getData)
+                    Button("Refresh", action: vm.getDataFromAPI)
                 }
             }
         }
-        .onAppear(perform: vm.getData)
+        .onAppear {
+            vm.getDataFromFileSystem()
+            vm.getDataFromAPI()
+        }
+    }
+    
+    var headerView: some View {
+        VStack {
+            HStack {
+                Text("Last Update: \(vm.lastUpdate)")
+                Spacer()
+            }
+            .padding(.horizontal)
+            
+            HStack {
+                Text("Currency: ")
+                Picker(selection: $vm.selectedCurrency) {
+                    ForEach(Currency.allCases) { currency in
+                        Text(currency.rawValue).tag(currency)
+                    }
+                } label: {
+                    EmptyView()
+                }
+                
+                Spacer()
+            }
+            .padding(.horizontal)
+            
+            HStack {
+                Stepper("Number of days: \(vm.infoAge)", value: $vm.infoAge, in: 1...30, onEditingChanged: { changed in
+                    vm.updateAge()
+                })
+                Spacer()
+            }
+            .padding(.horizontal)
+        }
+        
     }
 }
+
 
 #Preview {
     ExchangeRatesView()
