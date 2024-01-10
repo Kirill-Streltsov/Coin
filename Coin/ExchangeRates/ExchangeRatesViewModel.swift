@@ -21,11 +21,11 @@ extension ExchangeRatesView {
         @Published var filteredInfo = [Rate]()
         
         // InfoAge is 14 by default, meaning we are showing the information from the last 2 weeks
-        @Published var infoAge = 14
+        var infoAge = 14
         
         @Published var selectedCurrency = Currency.EUR
         
-        @Published var lastUpdate = ""
+        var lastUpdate = ""
         
         func getDataFromAPI() {
             APIManager.instance.getCoinData(currency: selectedCurrency) { coinInfo in
