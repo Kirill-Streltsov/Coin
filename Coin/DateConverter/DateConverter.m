@@ -11,27 +11,19 @@
 
 @implementation DateConverter
 
-+ (NSString *)convertDateString:(NSString *)inputDateString {
++ (NSString *)convertDateString:(NSString *)inputDateString shouldBeShort:(BOOL)shouldBeShort {
     NSDateFormatter *inputDateFormatter = [[NSDateFormatter alloc] init];
     [inputDateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSSSSS'Z'"];
     NSDate *inputDate = [inputDateFormatter dateFromString:inputDateString];
     
     NSDateFormatter *outputDateFormatter = [[NSDateFormatter alloc] init];
-    [outputDateFormatter setDateFormat:@"MMM d, HH:mm"];
+    if (shouldBeShort) {
+        [outputDateFormatter setDateFormat:@"dd/MM/yyyy"];
+    } else {
+        [outputDateFormatter setDateFormat:@"MMM d, HH:mm"];
+    }
+    
     NSString *outputDateString = [outputDateFormatter stringFromDate:inputDate];
-    
-    return outputDateString;
-}
-
-+ (NSString *)getShortDate:(NSString *)inputDateString {
-    NSDateFormatter *inputDateFormatter = [[NSDateFormatter alloc] init];
-    [inputDateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSSSSS'Z'"];
-    NSDate *inputDate = [inputDateFormatter dateFromString:inputDateString];
-    
-    NSDateFormatter *outputDateFormatter = [[NSDateFormatter alloc] init];
-    [outputDateFormatter setDateFormat:@"dd/MM/yyyy"];
-    NSString *outputDateString = [outputDateFormatter stringFromDate:inputDate];
-    
     return outputDateString;
 }
 

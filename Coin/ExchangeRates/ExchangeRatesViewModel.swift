@@ -15,7 +15,7 @@ extension ExchangeRatesView {
         let udLastCurrency = "lastCurrency"
         
         // Storing coinInfo in case we want to increment our info age
-        @Published var coinInfo = [Rate]()
+        private var coinInfo = [Rate]()
         
         // The information that we want to show to the user (with the info age in mind)
         @Published var filteredInfo = [Rate]()
@@ -68,7 +68,7 @@ extension ExchangeRatesView {
             outputDateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSS'Z'"
             let dateString = outputDateFormatter.string(from: currentDate)
             
-            let currentDateAsString = DateConverter.convertDateString(dateString)
+            let currentDateAsString = DateConverter.convertDateString(dateString, shouldBeShort: false)
             if let currentDateAsString = currentDateAsString {
                 lastUpdate = currentDateAsString
             }

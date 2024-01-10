@@ -11,8 +11,7 @@
 
 @interface DateConverter : NSObject
 
-+ (NSString *)convertDateString:(NSString *)inputDateString;
-+ (NSString *)getShortDate:(NSString *)inputDateString;
++ (NSString *)convertDateString:(NSString *)inputDateString shouldBeShort:(BOOL)shouldBeShort;
 
 @end
 

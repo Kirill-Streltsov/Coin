@@ -27,8 +27,7 @@ struct ExchangeRatesView: View {
                         HStack {
                             Text("Date: ")
                             Spacer()
-                            Text(DateConverter.getShortDate(item.timeOpen))
-                            
+                            Text(DateConverter.convertDateString(item.timeOpen, shouldBeShort: true))
                         }
                         .fontWeight(.light)
                     }
